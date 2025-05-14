@@ -1,4 +1,4 @@
-import {Button, Input} from "../../../shared";
+import {Button, Input} from "shared/ui";
 import * as React from "react";
 import {useAddTodo} from "../model/useAddTodo";
 

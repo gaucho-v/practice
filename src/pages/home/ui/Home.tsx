@@ -1,14 +1,11 @@
-import { Layout } from "../../../shared";
-import { TodoList, TodoFilters, AddTodoForm } from "../../../features";
+import { Layout } from "shared/ui";
 import * as React from "react";
 
 export const Home = () => {
     return (
         <Layout>
            <>
-               <AddTodoForm />
-               <TodoFilters />
-               <TodoList />
+               Привет
            </>
         </Layout>
     )

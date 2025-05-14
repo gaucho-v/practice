@@ -1,26 +1,30 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "target": "ES2020",               // Современный JavaScript
+    "module": "ESNext",               // Поддержка динамических импортов
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],  // Для работы с браузерными API
+    "jsx": "react-jsx",               // Автоматически подключает `jsx-runtime` (React 17+)
+    "strict": true,                   // Максимальный уровень проверки типов
+    "moduleResolution": "node",       // Для корректного разрешения модулей
+    "esModuleInterop": true,          // Упрощает импорт CommonJS-модулей
+    "skipLibCheck": true,             // Ускоряет компиляцию (пропускает проверку типов в node_modules)
+    "forceConsistentCasingInFileNames": true,  // Чувствительность к регистру в путях
+    "noEmit": true,                   // Не генерирует JS (если используете сборщик вроде Vite/Webpack)
+    "allowJs": true,                  // Разрешает импорт .js файлов в .ts
+    "resolveJsonModule": true,        // Разрешает импорт JSON
+    "isolatedModules": true,          // Гарантирует безопасность для транспиляции (Babel/swc)
+    "baseUrl": "./",                  // Для абсолютных путей (напр., `import ... from "src/components"`)
+    "paths": {                        // Алиасы для путей (опционально)
+      "app/*": ["src/app/*"],
+      "pages/*": ["src/pages/*"],
+      "features/*":  ["src/features/*"],
+      "entities/*": ["src/entities/*"],
+      "shared/*":  ["src/shared/*"]
+    },
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
   },
   "include": [
     "src"
   ],
+  "exclude": ["node_modules", "build"]
 }
