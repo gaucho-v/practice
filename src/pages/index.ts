@@ -1,3 +1,4 @@
 export { Home } from './home';
-export { View } from './view';
+export { TodoView } from './todoView';
 export { TodoEditor } from './todoEditor';
+export { Gallery } from './gallery';

@@ -13,6 +13,7 @@ export interface TodoContextState {
     sortByDate: boolean,
     filterByDone: boolean,
     isLoading: boolean,
+    isLoaded: boolean,
 }
 
 interface IAddTodo {
@@ -52,8 +53,13 @@ interface ISetTodos {
 }
 
 interface IChangeIsLoading {
-    type: 'CHANGE_IN_LOADING',
+    type: 'CHANGE_IS_LOADING',
     isLoading: boolean,
 }
 
-export type TodoContextAction = IAddTodo | IDeleteTodo | IChangeStatusTodo | IChangeTitleTodo | IChangeFilters | IInitTodosContext | ISetTodos | IChangeIsLoading;
+interface ISetIsLoaded {
+    type: 'SET_IS_LOADED',
+    isLoaded: boolean,
+}
+
+export type TodoContextAction = IAddTodo | IDeleteTodo | IChangeStatusTodo | IChangeTitleTodo | IChangeFilters | IInitTodosContext | ISetTodos | IChangeIsLoading | ISetIsLoaded;

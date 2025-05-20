@@ -1,5 +1,5 @@
 import { Layout } from "shared/ui";
-import { TodoList, TodoFilters, AddTodoForm } from "../../../features";
+import { TodoList, AddTodoForm } from "../../../features";
 import * as React from "react";
 
 export const TodoEditor = () => {
@@ -7,7 +7,6 @@ export const TodoEditor = () => {
         <Layout>
            <>
                <AddTodoForm />
-               <TodoFilters />
                <TodoList />
            </>
         </Layout>

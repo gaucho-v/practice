@@ -14,21 +14,21 @@ export const Layout = ({ children }: { children: JSX.Element }) => {
 
     return (
         <>
-            <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
-                <AppBar component="nav" position={"relative"}>
-                    <Toolbar>
-                        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {ROUTES.HEADER_NAVIGATE_ITEMS.map(({title, route}) => (
-                                <Button key={title} sx={{ color: '#fff' }} onClick={() => navigate(route)}>
-                                    {title}
-                                </Button>
-                            ))}
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-            </Box>
-            <Container maxWidth="md">
+            <Container maxWidth="lg">
+                <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    <AppBar component="nav" position={"relative"}>
+                        <Toolbar>
+                            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                {ROUTES.HEADER_NAVIGATE_ITEMS.map(({title, route}) => (
+                                    <Button key={title} sx={{ color: '#fff' }} onClick={() => navigate(route)}>
+                                        {title}
+                                    </Button>
+                                ))}
+                            </Box>
+                        </Toolbar>
+                    </AppBar>
+                </Box>
                 <Box component="main" sx={{ p: 4, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {children}
                 </Box>

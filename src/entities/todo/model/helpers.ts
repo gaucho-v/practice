@@ -1,4 +1,4 @@
-import {ITodo, ITodoResponse, TodoContextState} from "../model/types";
+import {ITodo, ITodoResponse} from "../model/types";
 
 const TODO_COUNT = 5;
 export const preparedTodoResponse = (data: ITodoResponse[]): ITodo[] => {
@@ -13,24 +13,26 @@ export const preparedTodoResponse = (data: ITodoResponse[]): ITodo[] => {
 }
 
 
-export const prepareTodoByFilters = (data: TodoContextState) => {
-    let res = data.todos;
-
-    if (data.filterByDone) {
-        res = res.filter(item => item.completed);
+export const prepareTodoByFilters = ({ todos, filterByDone, sortByDate }: Partial<{ todos: ITodo[], filterByDone: boolean, sortByDate: boolean }>) => {
+    if (!todos?.length) {
+        return [];
     }
 
-    if (data.sortByDate) {
-        res.sort((a,b) => {
+    if (filterByDone) {
+        todos = todos.filter(item => item.completed);
+    }
+
+    if (sortByDate) {
+        todos.sort((a,b) => {
             return a.date.getTime() - b.date.getTime();
         })
     } else {
-        res.sort((a,b) => {
+        todos.sort((a,b) => {
             return b.date.getTime() - a.date.getTime();
         })
     }
 
 
 
-    return res;
+    return todos;
 }

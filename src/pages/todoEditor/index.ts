@@ -1,1 +1,1 @@
-export { TodoEditor } from './ui';
+export { TodoEditor } from './ui/TodoEditor';

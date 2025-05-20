@@ -1,19 +1,22 @@
 import React from 'react';
 
 import { Routes, Route } from "react-router";
-import { View, Home, TodoEditor } from "../pages";
-import { TodoProvider } from "../entities";
+import { TodoView, Home, TodoEditor, Gallery } from "pages/index";
+import { TodoProvider } from "entities/todo";
 import { ROUTES } from 'shared/routes';
 
 function App() {
   return (
-      <TodoProvider>
-          <Routes>
-              <Route path={ROUTES.HOME_ROUTE} element={<Home/>}/>
-              <Route path={ROUTES.TODO_EDITOR_ROUTE} element={<TodoEditor/>}/>
-              <Route path={ROUTES.VIEW_TODOS_ROUTE} element={<View/>}/>
-          </Routes>
-      </TodoProvider>
+      <>
+          <TodoProvider>
+              <Routes>
+                  <Route path={ROUTES.HOME_ROUTE} element={<Home/>}/>
+                  <Route path={ROUTES.GALLERY_ROUTE} element={<Gallery/>}/>
+                  <Route path={ROUTES.TODO_EDITOR_ROUTE} element={<TodoEditor/>}/>
+                  <Route path={ROUTES.TODO_VIEW_ROUTE} element={<TodoView/>}/>
+              </Routes>
+          </TodoProvider>
+      </>
   );
 }
 

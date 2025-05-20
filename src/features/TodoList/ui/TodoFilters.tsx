@@ -1,19 +1,20 @@
 import { ToggleButton, ToggleButtonGroup} from '@mui/material';
 import React from "react";
-import { useTodoFilter } from "../model/useTodoFilter";
 
-export const TodoFilters = () => {
-    const { togglesList, handleChange } = useTodoFilter()
-
+interface IProps {
+    filtersList: string[],
+    onChange: (event: React.MouseEvent<HTMLElement, MouseEvent>, filters: string[]) => void,
+}
+export const TodoFilters = React.memo(({ filtersList, onChange }: IProps) => {
     return (
         <ToggleButtonGroup
             color="primary"
-            value={togglesList}
-            onChange={handleChange}
+            value={filtersList}
+            onChange={onChange}
             aria-label="Platform"
         >
             <ToggleButton value="sortByDate">Сортировка по дате создания</ToggleButton>
             <ToggleButton value="filterByDone">Фильтрация по выполненным задачам</ToggleButton>
         </ToggleButtonGroup>
     );
-}
+})

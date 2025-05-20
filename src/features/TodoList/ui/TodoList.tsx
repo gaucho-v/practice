@@ -1,34 +1,41 @@
-import { TodoCard } from "../../../entities";
-import { Button, Checkbox, EmptyList, Loader } from "../../../shared";
+import { TodoCard } from "entities/todo";
+import { BlockWithTitle, Loader } from "shared/ui";
 import * as React from "react";
 import {useTodoList} from "../model/useTodoList";
+import {TodoFilters} from "features/TodoList/ui/TodoFilters";
 
-export const TodoList = ({ viewOnly }: { viewOnly?: boolean }) => {
-    const { handleDelete, handleChangeCheckbox, filteredTodos, isLoading } = useTodoList();
+export const TodoList = React.memo(({ viewOnly }: { viewOnly?: boolean }) => {
+    const {
+        filteredTodos,
+        filtersList,
+        handleDelete,
+        handleChangeCheckbox,
+        handleChangeFilters,
+        isLoading
+    } = useTodoList();
 
     if (isLoading) {
         return <Loader/>
     }
 
-    if (!filteredTodos.length) {
-        return <EmptyList/>
-    }
-
     return (
         <>
+            <TodoFilters filtersList={filtersList} onChange={handleChangeFilters}/>
             {
-                filteredTodos.map((todo) => {
+                filteredTodos.length ? filteredTodos.map((todo) => {
                     return (
-                        <TodoCard todo={todo} key={todo.id} buttons={
-                            viewOnly ? undefined :
-                            <>
-                                <Button size="small" title={"Удалить"} variant={"text"} type={"button"} onClick={() => handleDelete(todo.id)}/>
-                                <Checkbox checked={todo.completed} onClick={() => handleChangeCheckbox(todo.id)}/>
-                            </>
-                        }/>
+                        <TodoCard
+                            viewOnly={viewOnly}
+                            todo={todo}
+                            key={todo.id}
+                            onChangeCheckbox={handleChangeCheckbox}
+                            onDelete={handleDelete}
+                        />
                     )
-                })
+                }) : <BlockWithTitle title={'Список пуст'}/>
             }
         </>
     )
-}
+})
+
+TodoList.displayName = 'TodoList';

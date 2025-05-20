@@ -1,5 +1,2 @@
-export {
-    TodoList
-} from './TodoList';
-export { TodoFilters } from './TodoFilters';
-export { AddTodoForm } from './AddTodo';
+export { AddTodoForm } from './AddTodo/ui/AddTodoForm';
+export { TodoList } from './TodoList/ui/TodoList';

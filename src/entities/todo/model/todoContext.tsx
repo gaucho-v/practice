@@ -1,19 +1,14 @@
 import React, {createContext, JSX, useContext, useEffect, useReducer} from 'react';
 import {TodoContextAction, TodoContextState} from './types';
 import { v4 as uuidv4 } from 'uuid';
-import {fetchTodos} from "./api";
-import {preparedTodoResponse} from "./helpers";
 
 const initialContext: TodoContextState = {
     todos: [],
     sortByDate: false,
     filterByDone: false,
     isLoading: false,
+    isLoaded: false,
 }
-
-const TodoContext = createContext<TodoContextState | null>(null);
-
-const TodoDispatchContext = createContext<React.ActionDispatch<[action: TodoContextAction]> | null>(null);
 
 const todoReducer = (state: TodoContextState, action: TodoContextAction): TodoContextState => {
     switch (action.type) {
@@ -79,40 +74,35 @@ const todoReducer = (state: TodoContextState, action: TodoContextAction): TodoCo
                 filterByDone: action.filters.includes('filterByDone'),
             }
         }
+        case 'CHANGE_IS_LOADING': {
+            return {
+                ...state,
+                isLoading: action.isLoading,
+            }
+        }
+        case 'SET_IS_LOADED': {
+            return {
+                ...state,
+                isLoaded: action.isLoaded,
+            }
+        }
         default:
             return state
     }
 }
+
+const TodoContext = createContext<TodoContextState | null>(null);
+
+const TodoDispatchContext = createContext<React.ActionDispatch<[action: TodoContextAction]> | null>(null);
+
+export const useTodoContext = () => useContext(TodoContext);
+export const useTodoDispatch = () => useContext(TodoDispatchContext);
 
 export const TodoProvider = ({ children }: { children: JSX.Element }) => {
     const [state, dispatch] = useReducer(
         todoReducer,
         initialContext,
     );
-
-    useEffect(() => {
-        dispatch({
-            type: 'CHANGE_IN_LOADING',
-            isLoading: true,
-        })
-
-
-        if (dispatch) {
-            fetchTodos()
-                .then((res) => {
-                    dispatch({
-                        type: 'SET_TODOS',
-                        todos: preparedTodoResponse(res),
-                    })
-                })
-                .finally(() => {
-                    dispatch({
-                        type: 'CHANGE_IN_LOADING',
-                        isLoading: false,
-                    })
-                });
-        }
-    }, []);
 
 
     return (
@@ -123,6 +113,3 @@ export const TodoProvider = ({ children }: { children: JSX.Element }) => {
         </TodoContext.Provider>
     );
 }
-
-export const useTodoContext = () => useContext(TodoContext);
-export const useTodoDispatch = () => useContext(TodoDispatchContext);
