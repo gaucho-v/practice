@@ -16,7 +16,7 @@ export const ImageView = ({ src, alt, width, loading = 'lazy', height, dataSrc }
             src={src}
             data-src={dataSrc}
             alt={alt}
-            loading={loading}
+            loading={'lazy'}
         />
     )
 }

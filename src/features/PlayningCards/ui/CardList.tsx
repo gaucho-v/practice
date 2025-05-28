@@ -1,4 +1,4 @@
-import { ImageList as ImageListComponent, ImageListItem, useTheme, useMediaQuery } from '@mui/material';
+import { ImageList as ImageListComponent, ImageListItem } from '@mui/material';
 import {ImageView} from "shared/ui/ImageView";
 import {useImageList} from "../model/useImageList";
 
@@ -11,7 +11,7 @@ interface IProps {
     cacheID: string,
     imageContainerID: string,
 }
-export const ImageList = ({ list, imageBlank, cacheID, imageContainerID }: IProps) => {
+export const CardList = ({ list, imageBlank, cacheID, imageContainerID }: IProps) => {
     const { cols } = useImageList({ imageContainerID, cacheID });
 
     return (

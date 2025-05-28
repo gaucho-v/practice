@@ -1,7 +1,7 @@
 import React from "react";
 import {usePlayingCards} from "../model/usePlayingCards";
 import {Box} from "@mui/material";
-import {BlockWithTitle, Button, ImageList} from "shared/ui";
+import {BlockWithTitle, Button, CardList} from "shared/ui";
 
 export const PlayingCards = React.memo(() => {
     const { list, onRemoveCache, imageBlank, cacheID, imageContainerID, isError } = usePlayingCards();
@@ -17,7 +17,7 @@ export const PlayingCards = React.memo(() => {
             </Box>
             {
                 list?.length ?
-                    <ImageList
+                    <CardList
                         list={list}
                         imageBlank={imageBlank}
                         cacheID={cacheID}

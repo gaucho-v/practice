@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { getDeckOfCards, CARD_BLANK_URL } from "entities/deck";
+import { getDeckOfCards } from "entities/deck";
 import { DECK_CACHE_ID, DECK_CONTAINER_ID } from "./config"
 import {isRequestError} from "shared/utils";
+import {useInitBlank} from "../model/useInitBlank";
 
 export const usePlayingCards = () => {
     const [isError, setIsError] = useState(false)
-    const [list, setList, ] = useState<{ src: string, alt: string}[]>();
+    const [list, setList] = useState<{ src: string, alt: string}[]>();
+    const { imageBlank} = useInitBlank({ cacheID: DECK_CACHE_ID });
 
     useEffect(() => {
         async function getCards() {
@@ -27,13 +29,11 @@ export const usePlayingCards = () => {
 
     const onRemoveCache = async ()=> await caches.delete(DECK_CACHE_ID);
 
-    console.log(isError)
-
     return {
         isError,
         list,
         onRemoveCache,
-        imageBlank: CARD_BLANK_URL,
+        imageBlank,
         imageContainerID: DECK_CONTAINER_ID,
         cacheID: DECK_CACHE_ID,
     }
