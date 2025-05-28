@@ -4,4 +4,4 @@ export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { BlockWithTitle } from './BlockWithTitle';
 export { Loader } from './Loader';
-export { ImageList } from './ImageList';
+export { ImageList } from 'features/PlayningCards/ui/ImageList';

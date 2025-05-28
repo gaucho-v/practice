@@ -1,2 +1,3 @@
-export { AddTodoForm } from './AddTodo/ui/AddTodoForm';
-export { TodoList } from './TodoList/ui/TodoList';
+export { AddTodoForm } from './AddTodo';
+export { TodoList } from './TodoList';
+export { PlayingCards } from './PlayningCards';

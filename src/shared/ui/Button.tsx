@@ -3,8 +3,8 @@ import { Button as ButtonComponent } from '@mui/material';
 interface IButton {
     variant: 'outlined' | 'text',
     title: string,
-    type: 'button' | 'submit',
-    size: 'small',
+    type?: 'button' | 'submit',
+    size?: 'small',
     onClick: () => void,
 }
 
