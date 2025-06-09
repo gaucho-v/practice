@@ -4,7 +4,7 @@ import {Box} from "@mui/material";
 import {BlockWithTitle, Button, CardList} from "shared/ui";
 
 export const PlayingCards = React.memo(() => {
-    const { list, onRemoveCache, imageBlank, cacheID, imageContainerID, isError } = usePlayingCards();
+    const { list, onRemoveCache, isError } = usePlayingCards();
 
     return (
         <>
@@ -17,12 +17,7 @@ export const PlayingCards = React.memo(() => {
             </Box>
             {
                 list?.length ?
-                    <CardList
-                        list={list}
-                        imageBlank={imageBlank}
-                        cacheID={cacheID}
-                        imageContainerID={imageContainerID}
-                    /> :
+                    <CardList list={list}/> :
                     <BlockWithTitle title={isError ? 'Ошибка при загрузке колоды' : 'Список пуст'}/>
             }
         </>

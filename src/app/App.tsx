@@ -6,6 +6,15 @@ import { TodoProvider } from "entities/todo";
 import { ROUTES } from 'shared/routes';
 
 function App() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+
+            await navigator
+                .serviceWorker
+                .register('/sw.js')
+        });
+    }
+
   return (
       <>
           <TodoProvider>

@@ -1,2 +1,1 @@
-export const DECK_CACHE_ID = 'DECK_CACHE_KEY'
-export const DECK_CONTAINER_ID = 'DECK_CONTAINER_ID'
+export const DECK_CACHE_ID = 'galley-deck-sw'

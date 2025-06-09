@@ -1,14 +1,13 @@
 interface IProps {
     height?: number,
     width?: number,
-    loading?: 'lazy' | 'eager',
     dataSrc?: string,
 
     src: string,
     alt: string,
 }
 
-export const ImageView = ({ src, alt, width, loading = 'lazy', height, dataSrc }: IProps) => {
+export const ImageView = ({ src, alt, width, height, dataSrc }: IProps) => {
     return (
         <img
             width={width}

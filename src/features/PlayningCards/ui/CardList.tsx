@@ -7,20 +7,16 @@ interface IProps {
         src: string,
         alt: string,
     }[],
-    imageBlank: string,
-    cacheID: string,
-    imageContainerID: string,
 }
-export const CardList = ({ list, imageBlank, cacheID, imageContainerID }: IProps) => {
-    const { cols } = useImageList({ imageContainerID, cacheID });
+export const CardList = ({ list }: IProps) => {
+    const { cols } = useImageList();
 
     return (
-        <ImageListComponent cols={cols} id={imageContainerID}>
+        <ImageListComponent cols={cols}>
             {list.map(({ src, alt}, idx) => (
                 <ImageListItem key={src + idx}>
                     <ImageView
-                        src={imageBlank}
-                        dataSrc={src}
+                        src={src}
                         alt={alt}
                         width={224}
                         height={312}
