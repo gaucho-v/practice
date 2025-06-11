@@ -4,28 +4,31 @@ import { Routes, Route } from "react-router";
 import { TodoView, Home, TodoEditor, Gallery } from "pages/index";
 import { TodoProvider } from "entities/todo";
 import { ROUTES } from 'shared/routes';
+import { getEnv } from "shared/utils";
+
+const { ghPath, isDev} = getEnv();
+const ROUTE_PATH = isDev ? '' : ghPath
 
 function App() {
+
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
 
             await navigator
                 .serviceWorker
-                .register('/sw.js')
+                .register(isDev ? 'sw.js' : `${ghPath}/sw.js`)
         });
     }
 
   return (
-      <>
-          <TodoProvider>
-              <Routes>
-                  <Route path={ROUTES.HOME_ROUTE} element={<Home/>}/>
-                  <Route path={ROUTES.GALLERY_ROUTE} element={<Gallery/>}/>
-                  <Route path={ROUTES.TODO_EDITOR_ROUTE} element={<TodoEditor/>}/>
-                  <Route path={ROUTES.TODO_VIEW_ROUTE} element={<TodoView/>}/>
-              </Routes>
-          </TodoProvider>
-      </>
+      <TodoProvider>
+          <Routes>
+              <Route path={`${ROUTE_PATH}${ROUTES.HOME_ROUTE}`} element={<Home/>}/>
+              <Route path={`${ROUTE_PATH}${ROUTES.GALLERY_ROUTE}`} element={<Gallery/>}/>
+              <Route path={`${ROUTE_PATH}${ROUTES.TODO_EDITOR_ROUTE}`} element={<TodoEditor/>}/>
+              <Route path={`${ROUTE_PATH}${ROUTES.TODO_VIEW_ROUTE}`} element={<TodoView/>}/>
+          </Routes>
+      </TodoProvider>
   );
 }
 

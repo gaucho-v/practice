@@ -14,12 +14,12 @@ export const Layout = ({ children }: { children: JSX.Element }) => {
 
     return (
         <>
-            <Container maxWidth="lg">
+            <Container sx={{ width: '100%', padding: '0 !important' }}>
                 <Box sx={{ display: 'flex' }}>
                     <CssBaseline />
                     <AppBar component="nav" position={"relative"}>
                         <Toolbar>
-                            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            <Box sx={{ display: { xs: 'flex', sm: 'block' }, flexDirection: { xs: 'column', sm: 'row' }}}>
                                 {ROUTES.HEADER_NAVIGATE_ITEMS.map(({title, route}) => (
                                     <Button key={title} sx={{ color: '#fff' }} onClick={() => navigate(route)}>
                                         {title}
@@ -29,6 +29,8 @@ export const Layout = ({ children }: { children: JSX.Element }) => {
                         </Toolbar>
                     </AppBar>
                 </Box>
+            </Container>
+            <Container maxWidth="lg">
                 <Box component="main" sx={{ p: 4, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {children}
                 </Box>

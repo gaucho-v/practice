@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require('path');
+const webpack = require('webpack');
 
 const mode = 'development';
 
@@ -9,10 +10,10 @@ const projectName = packageJson.name;
 const projectVersion = packageJson.version;
 
 module.exports = {
-    mode,
+    mode: process.env.NODE_ENV,
     entry: './src/index.tsx',
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'docs'),
         filename: `[hash].${projectName}.${projectVersion}.js`,
         clean: true, // Очиска папка build перед сборкой
     },
@@ -41,6 +42,10 @@ module.exports = {
                 { from: 'public/assets', to: 'assets' },
             ],
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            'process.env.GH_PATH': JSON.stringify(process.env.GH_PATH),
+        })
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
