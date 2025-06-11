@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require('path');
 const webpack = require('webpack');
 
-const mode = 'development';
+const isDev = process.env.NODE_ENV === 'development';
 
 const packageJson = require('./package.json');
 const projectName = packageJson.name;
@@ -34,7 +34,7 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: './public/index.html' }),
+        new HtmlWebpackPlugin({ template: isDev ? './public/index.html' : './public/prod.html' }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: "public/sw.js", to: "sw.js" },
@@ -44,7 +44,6 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            'process.env.GH_PATH': JSON.stringify(process.env.GH_PATH),
         })
     ],
     resolve: {

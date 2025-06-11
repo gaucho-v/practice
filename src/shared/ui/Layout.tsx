@@ -21,7 +21,10 @@ export const Layout = ({ children }: { children: JSX.Element }) => {
                         <Toolbar>
                             <Box sx={{ display: { xs: 'flex', sm: 'block' }, flexDirection: { xs: 'column', sm: 'row' }}}>
                                 {ROUTES.HEADER_NAVIGATE_ITEMS.map(({title, route}) => (
-                                    <Button key={title} sx={{ color: '#fff' }} onClick={() => navigate(route)}>
+                                    <Button key={title} sx={{ color: '#fff' }} onClick={() => {
+                                        console.log(route);
+                                        navigate(route);
+                                    }}>
                                         {title}
                                     </Button>
                                 ))}
