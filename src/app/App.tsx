@@ -11,6 +11,9 @@ const ROUTE_PATH = isDev ? '' : ghPath
 
 function App() {
 
+    console.log(ROUTE_PATH, ghPath, isDev)
+    console.log(`${ROUTE_PATH}${ROUTES.HOME_ROUTE}`)
+
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
 
